@@ -9,27 +9,53 @@ import com.github.unithon.unithon.model.MyPage;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyPageAdapter extends RecyclerView.Adapter<MyPageViewHolder> {
+public class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+    private static final int SIZE_OF_HEADER = 1;
+
+    private static final int VIEW_TYPE_SECTION = 100;
+    private static final int VIEW_TYPE_PAGE = 101;
 
     private final List<MyPage> myPageList = new ArrayList<>();
 
     @Override
-    public MyPageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         final LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        final View view = layoutInflater.inflate(R.layout.view_mypage, parent, false);
-        final MyPageViewHolder myPageViewHolder = new MyPageViewHolder(view);
+        final View view;
 
-        return myPageViewHolder;
+        if(viewType == VIEW_TYPE_SECTION) {
+            view = layoutInflater.inflate(R.layout.view_section, parent, false);
+            final SectionViewHolder sectionViewHolder = new SectionViewHolder(view);
+            return sectionViewHolder;
+        } else {
+            view = layoutInflater.inflate(R.layout.view_mypage, parent, false);
+            final MyPageViewHolder myPageViewHolder = new MyPageViewHolder(view);
+            return myPageViewHolder;
+        }
     }
 
     @Override
-    public void onBindViewHolder(MyPageViewHolder holder, int position) {
-        holder.bind(myPageList.get(position));
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        switch(getItemViewType(position)) {
+            case VIEW_TYPE_PAGE:
+                ((MyPageViewHolder) holder).bind(myPageList.get(position));
+                break;
+        }
+
     }
 
     @Override
     public int getItemCount() {
-        return myPageList.size();
+        return myPageList.size() + SIZE_OF_HEADER;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if(position == 0) {
+            return VIEW_TYPE_SECTION;
+        } else {
+            return VIEW_TYPE_PAGE;
+        }
     }
 
     public void setMyPageList(List<MyPage> myPageList) {

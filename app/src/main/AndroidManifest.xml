@@ -25,7 +25,7 @@
     <activity android:name=".login.LoginActivity" />
     <activity android:name=".search.SearchActivity" />
     <activity android:name=".book.BookActivity" />
-    <activity android:name=".review.ReviewActivity"></activity>
+    <activity android:name=".review.ReviewActivity" />
     
     <!-- For naver login api -->
     <activity android:name="com.nhn.android.naverlogin.ui.OAuthLoginActivity"

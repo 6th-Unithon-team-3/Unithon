@@ -16,7 +16,7 @@ public class BookAdapter extends RecyclerView.Adapter {
     private static final int SIZE_OF_HEADER = 1;
 
     private static final int VIEW_TYPE_BOOK_INFO = 100;
-    private static final int VIEW_TPYE_REVIEW = 101;
+    private static final int VIEW_TYPE_REVIEW = 101;
 
     private BookInfo bookInfo;
     private List<Review> reviewList = new ArrayList<>();
@@ -41,7 +41,7 @@ public class BookAdapter extends RecyclerView.Adapter {
             case VIEW_TYPE_BOOK_INFO:
                 ((BookInfoViewHolder) holder).bind(bookInfo);
                 break;
-            case VIEW_TPYE_REVIEW:
+            case VIEW_TYPE_REVIEW:
                 ((ReviewViewHodler) holder).bind(reviewList.get(position + SIZE_OF_HEADER));
                 break;
             default:
@@ -59,7 +59,7 @@ public class BookAdapter extends RecyclerView.Adapter {
         if(position == 0) {
             return VIEW_TYPE_BOOK_INFO;
         } else {
-            return VIEW_TPYE_REVIEW;
+            return VIEW_TYPE_REVIEW;
         }
     }
 
