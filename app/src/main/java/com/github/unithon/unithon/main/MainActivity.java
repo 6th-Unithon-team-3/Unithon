@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         getSupportFragmentManager().beginTransaction()
                 .add(HomeFragment.newInstance(), HomeFragment.TAG)
                 .commitNow();
+
+        replaceFragment(HomeFragment.newInstance(), HomeFragment.TAG);
     }
 
     private void replaceFragment(Fragment fragment, String tag) {

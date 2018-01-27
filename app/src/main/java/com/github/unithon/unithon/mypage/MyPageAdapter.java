@@ -37,8 +37,11 @@ public class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         switch(getItemViewType(position)) {
+            case VIEW_TYPE_SECTION:
+                ((SectionViewHolder)holder).bind("마이페이지");
+                break;
             case VIEW_TYPE_PAGE:
-                ((MyPageViewHolder) holder).bind(myPageList.get(position));
+                ((MyPageViewHolder) holder).bind(myPageList.get(position - SIZE_OF_HEADER));
                 break;
         }
 
