@@ -19,3 +19,10 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+
+# naver login
+-libraryjars ../OAuthNyNaver/naveroauthlib/naveroauthlib-4.1.4.jar
+-keep public class com.nhn.android.naverlogin.** {
+       public protected *;
+}
