@@ -1,27 +1,32 @@
 package com.github.unithon.unithon.home;
 
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatImageView;
+import android.support.v7.widget.AppCompatTextView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.bumptech.glide.Glide;
 import com.github.unithon.unithon.R;
+import com.github.unithon.unithon.book.BookActivity;
 import com.github.unithon.unithon.model.RecommendBook;
 
 public class RecommendFragment extends Fragment {
 
-    private static final String KEY_RECOMMEND_BOOK = "recommend_book";
+    public static final String KEY_RECOMMEND_BOOK = "recommend_book";
 
     @BindView(R.id.iv_recommend_book)
     AppCompatImageView ivRecommendBook;
 
-    private RecommendBook recommendBook;
+    @BindView(R.id.tv_title)
+    AppCompatTextView tvTitle;
 
+    private RecommendBook recommendBook;
 
     public RecommendFragment() {
     }
@@ -48,9 +53,17 @@ public class RecommendFragment extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_recommend, container, false);
         ButterKnife.bind(this, view);
 
+        tvTitle.setText(recommendBook.getTitle());
+
         Glide.with(view)
-                .load(recommendBook.getImgUrl())
+                .load(recommendBook.getImage())
                 .into(ivRecommendBook);
+
+        ivRecommendBook.setOnClickListener(v -> {
+            final Intent intent = new Intent(v.getContext(), BookActivity.class);
+            intent.putExtra(KEY_RECOMMEND_BOOK, recommendBook);
+            startActivity(intent);
+        });
 
         return view;
     }

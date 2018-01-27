@@ -14,6 +14,7 @@ import butterknife.ButterKnife;
 import com.github.unithon.unithon.R;
 import com.github.unithon.unithon.model.MyPage;
 import com.github.unithon.unithon.network.UnithonService;
+import com.github.unithon.unithon.network.model.MyPageResponse;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -55,17 +56,22 @@ public class MyPageFragment extends Fragment {
     }
 
     private void bindReview() {
-        UnithonService.getInstance().getMyPages().enqueue(new Callback<List<MyPage>>() {
+        UnithonService.getInstance().getMyPages("ojh102").enqueue(new Callback<MyPageResponse>() {
+
             @Override
-            public void onResponse(Call<List<MyPage>> call, Response<List<MyPage>> response) {
+            public void onResponse(Call<MyPageResponse> call, Response<MyPageResponse> response) {
                 if(response.isSuccessful()) {
-                    final List<MyPage> myPageList = response.body();
-                    myPageAdapter.setMyPageList(myPageList);
+                    final MyPageResponse myPageResponse = response.body();
+                    final List<MyPage> myPages = myPageResponse.response;
+
+                    if(myPages != null && myPages.size() > 0) {
+                        myPageAdapter.setMyPageList(myPages);
+                    }
                 }
             }
 
             @Override
-            public void onFailure(Call<List<MyPage>> call, Throwable t) {
+            public void onFailure(Call<MyPageResponse> call, Throwable t) {
 
             }
         });

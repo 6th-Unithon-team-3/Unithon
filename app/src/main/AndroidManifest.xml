@@ -36,7 +36,7 @@
 
     </activity>
     <activity android:name=".book.BookActivity" />
-    <activity android:name=".review.ReviewActivity" />
+    <activity android:name=".content.ReviewActivity" />
     
     <!-- For naver login api -->
     <activity android:name="com.nhn.android.naverlogin.ui.OAuthLoginActivity"

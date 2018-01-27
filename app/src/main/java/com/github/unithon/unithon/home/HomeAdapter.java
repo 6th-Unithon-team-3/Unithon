@@ -9,7 +9,7 @@ import com.github.unithon.unithon.R;
 import com.github.unithon.unithon.model.RecommendBook;
 import com.github.unithon.unithon.model.Review;
 import com.github.unithon.unithon.mypage.SectionViewHolder;
-import com.github.unithon.unithon.review.ReviewViewHodler;
+import com.github.unithon.unithon.review.ReviewViewHolder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +41,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             return new RecommendPagerViewHolder(fragmentManager, view);
         } else {
             view = layoutInflater.inflate(R.layout.view_review, parent, false);
-            return new ReviewViewHodler(view);
+            return new ReviewViewHolder(view);
         }
     }
 
@@ -55,7 +55,7 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 ((RecommendPagerViewHolder)holder).bind(recommendBookList);
                 break;
             case TYPE_REVIEW:
-                ((ReviewViewHodler) holder).bind(reviewList.get(position - 2));
+                ((ReviewViewHolder) holder).bind(reviewList.get(position - 2));
                 break;
         }
     }

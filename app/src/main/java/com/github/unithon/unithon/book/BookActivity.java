@@ -1,5 +1,7 @@
 package com.github.unithon.unithon.book;
 
+import static com.github.unithon.unithon.home.RecommendFragment.KEY_RECOMMEND_BOOK;
+
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -11,8 +13,16 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.github.unithon.unithon.R;
 import com.github.unithon.unithon.model.BookInfo;
+import com.github.unithon.unithon.model.BookSentiment;
+import com.github.unithon.unithon.model.RecommendBook;
 import com.github.unithon.unithon.model.Review;
-import java.util.ArrayList;
+import com.github.unithon.unithon.network.UnithonService;
+import com.github.unithon.unithon.network.model.BookResponse;
+import com.github.unithon.unithon.util.PollyHelper;
+import java.util.List;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class BookActivity extends AppCompatActivity {
 
@@ -56,8 +66,47 @@ public class BookActivity extends AppCompatActivity {
     }
 
     private void bindData() {
-        //TODO Network Call
-        bookAdapter.setBookInfo(BookInfo.getDummyBookInfo());
-        bookAdapter.setReviewList(Review.getDummyReviewList());
+
+        final RecommendBook recommendBook = (RecommendBook) getIntent().getSerializableExtra(KEY_RECOMMEND_BOOK);
+
+        UnithonService.getInstance().getBookResponse(recommendBook.getIsbn()).enqueue(new Callback<BookResponse>() {
+            @Override
+            public void onResponse(Call<BookResponse> call, Response<BookResponse> response) {
+                if(response.isSuccessful()) {
+                    final BookResponse bookResponse = response.body();
+
+                    final BookSentiment bookSentiment = bookResponse.response;
+                    final BookInfo bookInfo = new BookInfo();
+
+                    bookInfo.setIsbn(recommendBook.getIsbn());
+                    bookInfo.setTitle(recommendBook.getTitle());
+                    bookInfo.setAuthor(recommendBook.getAuthor());
+                    bookInfo.setImage(recommendBook.getImage());
+                    bookInfo.setReviews(bookSentiment.total);
+                    bookInfo.setLikes(bookSentiment.like);
+                    bookInfo.setHates(bookSentiment.hate);
+
+                    bookAdapter.setBookInfo(bookInfo);
+
+                    final List<Review> reviewList = bookResponse.review;
+
+                    if(reviewList != null && reviewList.size() > 0) {
+                        if(reviewList.size() > 5) {
+                            bookAdapter.setReviewList(reviewList.subList(0, 4));
+                        } else {
+                            bookAdapter.setReviewList(reviewList);
+                        }
+                    }
+
+                    PollyHelper.getInstance().playPolly(recommendBook.getTitle());
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BookResponse> call, Throwable t) {
+
+            }
+        });
     }
 }
