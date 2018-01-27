@@ -1,6 +1,8 @@
 package com.github.unithon.unithon.network;
 
 import com.github.unithon.unithon.model.MyPage;
+import com.github.unithon.unithon.model.SearchInfo;
+
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -29,5 +31,11 @@ public class UnithonService {
     public Call<List<MyPage>> getMyPages() {
         return unithonApi.getMyPages();
     }
+
+    public Call<List<SearchInfo>> getSearchInfo()
+    {
+        return unithonApi.getSearchInfo();
+    }
+
 
 }

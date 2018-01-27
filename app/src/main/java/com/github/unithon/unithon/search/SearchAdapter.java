@@ -11,10 +11,12 @@ import com.github.unithon.unithon.R;
 import com.github.unithon.unithon.model.SearchInfo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SearchAdapter extends  RecyclerView.Adapter<SearchAdapter.ViewHolder> {
 
-    private ArrayList<SearchInfo> mDataset; //MainActivity에 item class를 정의해 놓았음
+    private List<SearchInfo> mDataset = new ArrayList<>(); //MainActivity에 item class를 정의해 놓았음
+    //private final List<MyPage> myPageList = new ArrayList<>();
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -67,6 +69,12 @@ public class SearchAdapter extends  RecyclerView.Adapter<SearchAdapter.ViewHolde
     @Override
     public int getItemCount() {
         return mDataset.size();
+    }
+
+    public void setSearchList(List<SearchInfo> searchInfolist) {
+        this.mDataset.clear();
+        this.mDataset.addAll(searchInfolist);
+        notifyDataSetChanged();
     }
 
 }

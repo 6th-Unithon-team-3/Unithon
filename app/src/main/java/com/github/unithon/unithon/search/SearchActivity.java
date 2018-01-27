@@ -12,8 +12,14 @@ import android.widget.Toast;
 
 import com.github.unithon.unithon.R;
 import com.github.unithon.unithon.model.SearchInfo;
+import com.github.unithon.unithon.network.UnithonService;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SearchActivity extends AppCompatActivity{
     //카드 클릭시 -> bookActivity로
@@ -28,7 +34,6 @@ public class SearchActivity extends AppCompatActivity{
     private RecyclerView.LayoutManager mLayoutManager;
 
     // 아이템 리스트
-    //private String[] myDataset;
     private static ArrayList<SearchInfo> searchinfoList;
 
 
@@ -41,6 +46,7 @@ public class SearchActivity extends AppCompatActivity{
         searchButton = (Button)findViewById(R.id.SearchButton);
         XButton = (Button)findViewById(R.id.Xbutton);
 
+        //Button
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,6 +56,7 @@ public class SearchActivity extends AppCompatActivity{
             }
         });
 
+        //Button
         XButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,14 +64,8 @@ public class SearchActivity extends AppCompatActivity{
             }
         });
 
-        //searchView = (SearchView) R.id.search_box;
 
-        //Recycler View
-        //데이터준비-실제로는 ArrayList<>등을 사용해야 할듯 하다.
-        //인터넷이나 폰에 있는 DB에서 아이템을 가져와 배열에 담아 주면 된다.
-        //myDataset = new String[]{"도봉순", "이순신", "강감찬","세종대왕"};
-        //ArrayList 생성
-
+        //임시 데이터 셋
         searchinfoList = new ArrayList<>();
         //ArrayList에 값 추가하기
         searchinfoList.add(new SearchInfo("마음의 바다", "홍길동", 1));
@@ -76,12 +77,38 @@ public class SearchActivity extends AppCompatActivity{
 
         mRecyclerView = (RecyclerView) findViewById(R.id.search_recycler_view);
         mRecyclerView.setHasFixedSize(true);//옵션
-        //Linear layout manager 사용
-        mLayoutManager = new GridLayoutManager(this, 2);
-        mRecyclerView.setLayoutManager(mLayoutManager);
 
+        initview();
         //어답터 세팅
         mAdapter = new SearchAdapter(searchinfoList); //스트링 배열 데이터 인자로
         mRecyclerView.setAdapter(mAdapter);
+    }
+
+    private void initview()
+    {
+        //Grid layout manager 사용
+        mLayoutManager = new GridLayoutManager(this, 2);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+    }
+
+
+    private void bindSearchInfo(SearchAdapter searchAdapter)
+    {
+        UnithonService.getInstance().getSearchInfo().enqueue(new Callback<List<SearchInfo>>() {
+            @Override
+            public void onResponse(Call<List<SearchInfo>> call, Response<List<SearchInfo>> response) {
+                if(response.isSuccessful())
+                {
+                    final List<SearchInfo> searchInfolist = response.body();
+                    searchAdapter.setSearchList(searchinfoList);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<SearchInfo>> call, Throwable t) {
+
+            }
+        });
     }
 }
