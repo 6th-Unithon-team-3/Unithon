@@ -23,12 +23,17 @@
     
     <activity android:name=".main.MainActivity" />
     <activity android:name=".login.LoginActivity" />
-    <activity android:name=".search.SearchActivity">
+
+    <!-- keybaord 올라오면 UI 알아서 잘리게끔   -->
+    <activity
+        android:name=".search.SearchActivity"
+        android:windowSoftInputMode="adjustPan">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
 
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
+
     </activity>
     <activity android:name=".book.BookActivity" />
     <activity android:name=".review.ReviewActivity" />
