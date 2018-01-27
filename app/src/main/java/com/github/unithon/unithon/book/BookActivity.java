@@ -11,6 +11,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.github.unithon.unithon.R;
 import com.github.unithon.unithon.model.BookInfo;
+import com.github.unithon.unithon.model.Review;
 import java.util.ArrayList;
 
 public class BookActivity extends AppCompatActivity {
@@ -56,7 +57,7 @@ public class BookActivity extends AppCompatActivity {
 
     private void bindData() {
         //TODO Network Call
-        bookAdapter.setBookInfo(new BookInfo());
-        bookAdapter.setReviewList(new ArrayList<>());
+        bookAdapter.setBookInfo(BookInfo.getDummyBookInfo());
+        bookAdapter.setReviewList(Review.getDummyReviewList());
     }
 }

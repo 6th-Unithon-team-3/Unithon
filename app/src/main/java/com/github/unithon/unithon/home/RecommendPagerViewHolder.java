@@ -31,6 +31,7 @@ public class RecommendPagerViewHolder extends RecyclerView.ViewHolder {
         recommendPagerAdapter = new RecommendPagerAdapter(fragmentManager);
         pagerRecommend.setAdapter(recommendPagerAdapter);
         circleIndicator.setViewPager(pagerRecommend);
+        recommendPagerAdapter.registerDataSetObserver(circleIndicator.getDataSetObserver());
 
     }
 

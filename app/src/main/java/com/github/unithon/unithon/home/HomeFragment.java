@@ -12,7 +12,10 @@ import android.view.ViewGroup;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.github.unithon.unithon.R;
+import com.github.unithon.unithon.model.RecommendBook;
+import com.github.unithon.unithon.model.Review;
 import java.util.ArrayList;
+import java.util.List;
 
 public class HomeFragment extends Fragment {
 
@@ -48,8 +51,8 @@ public class HomeFragment extends Fragment {
         rvHome.setLayoutManager(new LinearLayoutManager(getContext()));
         rvHome.setAdapter(homeAdapter);
 
-        homeAdapter.setRecommendBookList(new ArrayList<>());
-        homeAdapter.setReviewList(new ArrayList<>());
+        homeAdapter.setRecommendBookList(RecommendBook.getDummyRecommendBookList());
+        homeAdapter.setReviewList(Review.getDummyReviewList());
+        homeAdapter.notifyDataSetChanged();
     }
-
 }

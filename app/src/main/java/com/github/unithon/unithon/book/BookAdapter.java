@@ -69,8 +69,7 @@ public class BookAdapter extends RecyclerView.Adapter {
     }
 
     public void setReviewList(List<Review> reviewList) {
-        this.reviewList.clear();
-        this.reviewList.addAll(reviewList);
+        this.reviewList = reviewList;
         notifyDataSetChanged();
     }
 
