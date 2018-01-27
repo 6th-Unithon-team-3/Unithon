@@ -12,6 +12,7 @@
     android:layout_marginBottom="24dp"
     android:layout_marginLeft="24dp"
     android:textColor="@color/gray"
+    android:textStyle="bold"
     android:textSize="22sp"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintLeft_toLeftOf="parent"
