@@ -18,7 +18,7 @@
     tools:text="책 이름" />
 
   <android.support.v7.widget.AppCompatTextView
-    android:id="@+id/tv_author"
+    android:id="@+id/tv_writer"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:textColor="@color/warmGray"
@@ -37,7 +37,7 @@
     app:layout_constraintDimensionRatio="H,1:1.4"
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/tv_author" />
+    app:layout_constraintTop_toBottomOf="@+id/tv_writer" />
 
   <android.support.v7.widget.AppCompatButton
     android:id="@+id/btn_review"
