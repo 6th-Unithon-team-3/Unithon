@@ -12,31 +12,27 @@
     android:name=".UnithonApplication"
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
-    android:theme="@style/AppTheme">
+    android:theme="@style/AppTheme.NoActionBar">
     <activity android:name=".splash.SplashActivity">
-      <!--<intent-filter>-->
-        <!--<action android:name="android.intent.action.MAIN" />-->
-
-        <!--<category android:name="android.intent.category.LAUNCHER" />-->
-      <!--</intent-filter>-->
-    </activity>
-    <activity android:name=".main.MainActivity" />
-    <activity android:name=".login.LoginActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
 
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <activity android:name=".search.SearchActivity"></activity>
-
-
-
+    
+    <activity android:name=".main.MainActivity" />
+    <activity android:name=".login.LoginActivity" />
+    <activity android:name=".search.SearchActivity" />
+    <activity android:name=".book.BookActivity" />
+    <activity android:name=".review.ReviewActivity"></activity>
+    
     <!-- For naver login api -->
     <activity android:name="com.nhn.android.naverlogin.ui.OAuthLoginActivity"
         android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
     <activity android:name="com.nhn.android.naverlogin.ui.OAuthLoginInAppBrowserActivity"
         android:label="OAuth2.0 In-app"/>
+    
   </application>
 
 </manifest>

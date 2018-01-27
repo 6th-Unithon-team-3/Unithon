@@ -1,4 +1,4 @@
-package com.github.unithon.unithon.review;
+package com.github.unithon.unithon.mypage;
 
 
 import android.os.Bundle;
@@ -12,26 +12,26 @@ import android.view.ViewGroup;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.github.unithon.unithon.R;
-import com.github.unithon.unithon.model.Review;
+import com.github.unithon.unithon.model.MyPage;
 import com.github.unithon.unithon.network.UnithonService;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ReviewFragment extends Fragment {
+public class MyPageFragment extends Fragment {
 
-    public static final String TAG = ReviewFragment.class.getName();
+    public static final String TAG = MyPageFragment.class.getName();
 
-    @BindView(R.id.rv_review)
-    RecyclerView rvReview;
+    @BindView(R.id.rv_mypage)
+    RecyclerView rvMyPage;
 
-    private final ReviewAdapter reviewAdapter = new ReviewAdapter();
+    private final MyPageAdapter myPageAdapter = new MyPageAdapter();
 
-    public ReviewFragment() { }
+    public MyPageFragment() { }
 
-    public static ReviewFragment newInstance() {
-        ReviewFragment fragment = new ReviewFragment();
+    public static MyPageFragment newInstance() {
+        MyPageFragment fragment = new MyPageFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -39,7 +39,7 @@ public class ReviewFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.fragment_review, container, false);
+        final View view = inflater.inflate(R.layout.fragment_mypage, container, false);
 
         ButterKnife.bind(this, view);
 
@@ -50,22 +50,22 @@ public class ReviewFragment extends Fragment {
     }
 
     private void initializeView() {
-        rvReview.setLayoutManager(new LinearLayoutManager(getContext()));
-        rvReview.setAdapter(reviewAdapter);
+        rvMyPage.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvMyPage.setAdapter(myPageAdapter);
     }
 
     private void bindReview() {
-        UnithonService.getInstance().getReviews().enqueue(new Callback<List<Review>>() {
+        UnithonService.getInstance().getMyPages().enqueue(new Callback<List<MyPage>>() {
             @Override
-            public void onResponse(Call<List<Review>> call, Response<List<Review>> response) {
+            public void onResponse(Call<List<MyPage>> call, Response<List<MyPage>> response) {
                 if(response.isSuccessful()) {
-                    final List<Review> reviewList = response.body();
-                    reviewAdapter.setReviewList(reviewList);
+                    final List<MyPage> myPageList = response.body();
+                    myPageAdapter.setMyPageList(myPageList);
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Review>> call, Throwable t) {
+            public void onFailure(Call<List<MyPage>> call, Throwable t) {
 
             }
         });
