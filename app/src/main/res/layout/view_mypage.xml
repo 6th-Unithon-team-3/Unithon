@@ -39,7 +39,7 @@
       tools:text="책 이름 asdad asdada" />
 
     <android.support.v7.widget.AppCompatTextView
-      android:id="@+id/tv_writer"
+      android:id="@+id/tv_author"
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:ellipsize="end"

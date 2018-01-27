@@ -95,20 +95,6 @@ public class SearchActivity extends AppCompatActivity{
 
     private void bindSearchInfo(SearchAdapter searchAdapter)
     {
-        UnithonService.getInstance().getSearchInfo().enqueue(new Callback<List<SearchInfo>>() {
-            @Override
-            public void onResponse(Call<List<SearchInfo>> call, Response<List<SearchInfo>> response) {
-                if(response.isSuccessful())
-                {
-                    final List<SearchInfo> searchInfolist = response.body();
-                    searchAdapter.setSearchList(searchinfoList);
-                }
-            }
 
-            @Override
-            public void onFailure(Call<List<SearchInfo>> call, Throwable t) {
-
-            }
-        });
     }
 }
