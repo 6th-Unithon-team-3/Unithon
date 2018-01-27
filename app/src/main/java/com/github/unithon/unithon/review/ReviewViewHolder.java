@@ -1,5 +1,8 @@
 package com.github.unithon.unithon.review;
 
+import static com.github.unithon.unithon.review.ReviewActivity.KEY_ISBN;
+
+import android.content.Intent;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.RecyclerView;
@@ -14,7 +17,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ReviewViewHodler extends RecyclerView.ViewHolder {
+public class ReviewViewHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.tv_id)
     AppCompatTextView tvId;
@@ -27,9 +30,15 @@ public class ReviewViewHodler extends RecyclerView.ViewHolder {
 
     private Review review;
 
-    public ReviewViewHodler(View itemView) {
+    public ReviewViewHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
+
+        itemView.setOnClickListener(v -> {
+            final Intent intent = new Intent(v.getContext(), ReviewActivity.class);
+            intent.putExtra(KEY_ISBN, review.getIsbn());
+            v.getContext().startActivity(intent);
+        });
 
         ivLike.setOnClickListener(v -> {
             if(review.isLike()) {

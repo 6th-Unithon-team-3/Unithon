@@ -4,6 +4,7 @@ import com.github.unithon.unithon.model.MyPage;
 import com.github.unithon.unithon.network.model.BookResponse;
 import com.github.unithon.unithon.network.model.MyPageResponse;
 import com.github.unithon.unithon.network.model.RecommendResponse;
+import com.github.unithon.unithon.network.model.RecommendReviewResponse;
 import com.github.unithon.unithon.network.model.SearchResponse;
 import java.util.List;
 import retrofit2.Call;
@@ -18,6 +19,9 @@ public interface UnithonApi {
 
     @GET("/recommend_book")
     Call<RecommendResponse> getRecommendRespose();
+
+    @GET("/great_review")
+    Call<RecommendReviewResponse> getRecommendReviewResponse();
 
     @GET("/search_book/search/book")
     Call<SearchResponse> getSearchResponse(@Query("query") String isbn);

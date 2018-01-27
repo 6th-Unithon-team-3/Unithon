@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import com.github.unithon.unithon.R;
 import com.github.unithon.unithon.model.BookInfo;
 import com.github.unithon.unithon.model.Review;
-import com.github.unithon.unithon.review.ReviewViewHodler;
+import com.github.unithon.unithon.review.ReviewViewHolder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +31,7 @@ public class BookAdapter extends RecyclerView.Adapter {
         } else {
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_review, parent, false);
 
-            return new ReviewViewHodler(view);
+            return new ReviewViewHolder(view);
         }
     }
 
@@ -42,7 +42,7 @@ public class BookAdapter extends RecyclerView.Adapter {
                 ((BookInfoViewHolder) holder).bind(bookInfo);
                 break;
             case VIEW_TYPE_REVIEW:
-                ((ReviewViewHodler) holder).bind(reviewList.get(position - SIZE_OF_HEADER));
+                ((ReviewViewHolder) holder).bind(reviewList.get(position - SIZE_OF_HEADER));
                 break;
             default:
                 throw new IllegalArgumentException("is invalid type");

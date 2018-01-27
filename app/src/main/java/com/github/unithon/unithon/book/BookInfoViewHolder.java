@@ -1,5 +1,8 @@
 package com.github.unithon.unithon.book;
 
+import static com.github.unithon.unithon.review.ReviewActivity.KEY_ISBN;
+
+import android.content.Intent;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
@@ -10,6 +13,7 @@ import butterknife.ButterKnife;
 import com.bumptech.glide.Glide;
 import com.github.unithon.unithon.R;
 import com.github.unithon.unithon.model.BookInfo;
+import com.github.unithon.unithon.review.ReviewActivity;
 
 public class BookInfoViewHolder extends RecyclerView.ViewHolder {
 
@@ -60,7 +64,9 @@ public class BookInfoViewHolder extends RecyclerView.ViewHolder {
         tvHateCount.setText(String.valueOf(bookInfo.getHates()));
 
         btnReview.setOnClickListener(v -> {
-
+            final Intent intent = new Intent(v.getContext(), ReviewActivity.class);
+            intent.putExtra(KEY_ISBN, bookInfo.getIsbn());
+            v.getContext().startActivity(intent);
         });
 
     }

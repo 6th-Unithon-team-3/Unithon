@@ -12,7 +12,6 @@ public class Review {
     private String content;
     @SerializedName("is_like")
     private int isLikeInteger;
-    private boolean isLike;
 
 
     public String getTitle() {
@@ -68,7 +67,6 @@ public class Review {
     }
 
     public void setLike(boolean like) {
-        isLike = like;
         isLikeInteger = like ? 1 : 0;
     }
 }

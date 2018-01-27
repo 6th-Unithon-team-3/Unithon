@@ -4,6 +4,7 @@ import com.github.unithon.unithon.model.MyPage;
 import com.github.unithon.unithon.network.model.BookResponse;
 import com.github.unithon.unithon.network.model.MyPageResponse;
 import com.github.unithon.unithon.network.model.RecommendResponse;
+import com.github.unithon.unithon.network.model.RecommendReviewResponse;
 import com.github.unithon.unithon.network.model.SearchResponse;
 import java.util.List;
 import retrofit2.Call;
@@ -31,6 +32,10 @@ public class UnithonService {
 
     public Call<RecommendResponse> getRecommendResponse() {
         return unithonApi.getRecommendRespose();
+    }
+
+    public Call<RecommendReviewResponse> getRecommendReviewResponse() {
+        return unithonApi.getRecommendReviewResponse();
     }
 
     public Call<SearchResponse> getSearchResponse(String isbn) {

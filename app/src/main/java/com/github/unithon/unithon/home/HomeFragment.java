@@ -17,6 +17,7 @@ import com.github.unithon.unithon.model.RecommendBook;
 import com.github.unithon.unithon.model.Review;
 import com.github.unithon.unithon.network.UnithonService;
 import com.github.unithon.unithon.network.model.RecommendResponse;
+import com.github.unithon.unithon.network.model.RecommendReviewResponse;
 import java.util.ArrayList;
 import java.util.List;
 import retrofit2.Call;
@@ -76,7 +77,22 @@ public class HomeFragment extends Fragment {
             }
         });
 
-//
-//        homeAdapter.setReviewList(Review.getDummyReviewList());
+        UnithonService.getInstance().getRecommendReviewResponse().enqueue(new Callback<RecommendReviewResponse>() {
+            @Override
+            public void onResponse(Call<RecommendReviewResponse> call, Response<RecommendReviewResponse> response) {
+                if(response.isSuccessful()) {
+                    final RecommendReviewResponse recommendReviewResponse = response.body();
+
+                    if(recommendReviewResponse != null) {
+                        homeAdapter.setReviewList(recommendReviewResponse.response);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RecommendReviewResponse> call, Throwable t) {
+
+            }
+        });
     }
 }

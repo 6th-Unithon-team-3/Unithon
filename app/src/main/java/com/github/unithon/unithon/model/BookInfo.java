@@ -1,6 +1,7 @@
 package com.github.unithon.unithon.model;
 
 public class BookInfo {
+    private String isbn;
     private String title;
     private String author;
     private String image;
@@ -8,6 +9,14 @@ public class BookInfo {
     private int reviews;
     private int likes;
     private int hates;
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
 
     public String getTitle() {
         return title;

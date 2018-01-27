@@ -18,6 +18,7 @@ import com.github.unithon.unithon.model.RecommendBook;
 import com.github.unithon.unithon.model.Review;
 import com.github.unithon.unithon.network.UnithonService;
 import com.github.unithon.unithon.network.model.BookResponse;
+import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -76,6 +77,7 @@ public class BookActivity extends AppCompatActivity {
                     final BookSentiment bookSentiment = bookResponse.response;
                     final BookInfo bookInfo = new BookInfo();
 
+                    bookInfo.setIsbn(recommendBook.getIsbn());
                     bookInfo.setTitle(recommendBook.getTitle());
                     bookInfo.setAuthor(recommendBook.getAuthor());
                     bookInfo.setImage(recommendBook.getImage());
@@ -85,8 +87,14 @@ public class BookActivity extends AppCompatActivity {
 
                     bookAdapter.setBookInfo(bookInfo);
 
-                    if(bookResponse.review != null && bookResponse.review.size() > 0) {
-                        bookAdapter.setReviewList(bookResponse.review);
+                    final List<Review> reviewList = bookResponse.review;
+
+                    if(reviewList != null && reviewList.size() > 0) {
+                        if(reviewList.size() > 5) {
+                            bookAdapter.setReviewList(reviewList.subList(0, 4));
+                        } else {
+                            bookAdapter.setReviewList(reviewList);
+                        }
                     }
                 }
             }
