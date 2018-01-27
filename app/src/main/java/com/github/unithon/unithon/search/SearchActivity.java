@@ -16,6 +16,7 @@ import com.github.unithon.unithon.model.SearchInfo;
 import java.util.ArrayList;
 
 public class SearchActivity extends AppCompatActivity{
+    //카드 클릭시 -> bookActivity로
     //Search View
     EditText editText;
     Button searchButton;
