@@ -16,16 +16,11 @@ public class SplashActivity extends AppCompatActivity {
 
     private static final boolean DEBUG_MAIN = true;
 
-    @BindView(R.id.lottie_view)
-    LottieAnimationView lottieAnimationView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         ButterKnife.bind(this);
-
-        lottieAnimationView.playAnimation();
 
         new Handler().postDelayed(() -> {
             if(DEBUG_MAIN) {
