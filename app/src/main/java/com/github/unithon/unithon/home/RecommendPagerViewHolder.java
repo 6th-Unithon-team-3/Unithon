@@ -1,6 +1,8 @@
 package com.github.unithon.unithon.home;
 
+import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -30,9 +32,10 @@ public class RecommendPagerViewHolder extends RecyclerView.ViewHolder {
 
         recommendPagerAdapter = new RecommendPagerAdapter(fragmentManager);
         pagerRecommend.setAdapter(recommendPagerAdapter);
+        pagerRecommend.setPageTransformer(false,new CustPagerTransformer(itemView.getContext()));
+        pagerRecommend.setOffscreenPageLimit(5);
         circleIndicator.setViewPager(pagerRecommend);
         recommendPagerAdapter.registerDataSetObserver(circleIndicator.getDataSetObserver());
-
     }
 
     public void bind(List<RecommendBook> recommendBookList) {
