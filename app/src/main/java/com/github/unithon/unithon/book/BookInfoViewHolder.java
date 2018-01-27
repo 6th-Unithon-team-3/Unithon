@@ -38,6 +38,9 @@ public class BookInfoViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.tv_hate_count)
     AppCompatTextView tvHateCount;
 
+    @BindView(R.id.tv_more)
+    AppCompatTextView tvMore;
+
     private BookInfo bookInfo;
 
     public BookInfoViewHolder(View itemView) {
@@ -63,7 +66,7 @@ public class BookInfoViewHolder extends RecyclerView.ViewHolder {
         tvLikeCount.setText(String.valueOf(bookInfo.getLikes()));
         tvHateCount.setText(String.valueOf(bookInfo.getHates()));
 
-        btnReview.setOnClickListener(v -> {
+        tvMore.setOnClickListener(v -> {
             final Intent intent = new Intent(v.getContext(), ReviewActivity.class);
             intent.putExtra(KEY_ISBN, bookInfo.getIsbn());
             v.getContext().startActivity(intent);
