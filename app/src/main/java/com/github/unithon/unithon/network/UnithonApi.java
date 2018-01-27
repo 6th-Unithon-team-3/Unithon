@@ -1,6 +1,7 @@
 package com.github.unithon.unithon.network;
 
 import com.github.unithon.unithon.model.MyPage;
+import com.github.unithon.unithon.network.model.BookResponse;
 import com.github.unithon.unithon.network.model.MyPageResponse;
 import com.github.unithon.unithon.network.model.RecommendResponse;
 import com.github.unithon.unithon.network.model.SearchResponse;
@@ -23,4 +24,8 @@ public interface UnithonApi {
     @FormUrlEncoded
     @POST("/get_my_review")
     Call<MyPageResponse> getMyPages(@Field("id") String id);
+
+    @FormUrlEncoded
+    @POST("/get_book_review")
+    Call<BookResponse> getBookResponse(@Field("isbn") String isbn);
 }

@@ -5,9 +5,27 @@ import java.util.List;
 
 public class Review {
 
+    private String isbn;
     private String id;
+    private String title;
     private String review;
     private boolean isLike;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
 
     public String getId() {
         return id;

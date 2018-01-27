@@ -13,12 +13,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.github.unithon.unithon.R;
 import com.github.unithon.unithon.model.BookInfo;
+import com.github.unithon.unithon.model.BookSentiment;
 import com.github.unithon.unithon.model.RecommendBook;
 import com.github.unithon.unithon.model.Review;
 import com.github.unithon.unithon.network.UnithonService;
-import com.github.unithon.unithon.network.model.RecommendResponse;
-import java.util.ArrayList;
-import java.util.List;
+import com.github.unithon.unithon.network.model.BookResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -66,24 +65,36 @@ public class BookActivity extends AppCompatActivity {
 
     private void bindData() {
 
-        UnithonService.getInstance().getRecommendResponse().enqueue(new Callback<RecommendResponse>() {
+        final RecommendBook recommendBook = (RecommendBook) getIntent().getSerializableExtra(KEY_RECOMMEND_BOOK);
+
+        UnithonService.getInstance().getBookResponse(recommendBook.getIsbn()).enqueue(new Callback<BookResponse>() {
             @Override
-            public void onResponse(Call<RecommendResponse> call, Response<RecommendResponse> response) {
+            public void onResponse(Call<BookResponse> call, Response<BookResponse> response) {
                 if(response.isSuccessful()) {
+                    final BookResponse bookResponse = response.body();
 
-                    final RecommendResponse recommendResponse = response.body();
+                    final BookSentiment bookSentiment = bookResponse.response;
+                    final BookInfo bookInfo = new BookInfo();
 
+                    bookInfo.setTitle(recommendBook.getTitle());
+                    bookInfo.setAuthor(recommendBook.getAuthor());
+                    bookInfo.setImage(recommendBook.getImage());
+                    bookInfo.setReviews(bookSentiment.total);
+                    bookInfo.setLikes(bookSentiment.like);
+                    bookInfo.setHates(bookSentiment.hate);
 
+                    bookAdapter.setBookInfo(bookInfo);
+
+                    if(bookResponse.review != null && bookResponse.review.size() > 0) {
+                        bookAdapter.setReviewList(bookResponse.review);
+                    }
                 }
             }
 
             @Override
-            public void onFailure(Call<RecommendResponse> call, Throwable t) {
+            public void onFailure(Call<BookResponse> call, Throwable t) {
 
             }
         });
-
-        bookAdapter.setBookInfo(BookInfo.getDummyBookInfo());
-        bookAdapter.setReviewList(Review.getDummyReviewList());
     }
 }

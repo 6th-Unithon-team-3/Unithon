@@ -6,9 +6,18 @@ import java.util.List;
 
 public class RecommendBook implements Serializable {
 
+    private String isbn;
     private String title;
     private String author;
-    private String imgUrl;
+    private String image;
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
 
     public String getTitle() {
         return title;
@@ -26,12 +35,12 @@ public class RecommendBook implements Serializable {
         this.author = author;
     }
 
-    public String getImgUrl() {
-        return imgUrl;
+    public String getImage() {
+        return image;
     }
 
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public static List<RecommendBook> getDummyRecommendBookList() {
@@ -41,7 +50,7 @@ public class RecommendBook implements Serializable {
             final RecommendBook recommendBook = new RecommendBook();
             recommendBook.setTitle("title" + i);
             recommendBook.setAuthor("title" + i);
-            recommendBook.setImgUrl("http://bookthumb.phinf.naver.net/cover/109/245/10924505.jpg?type=m1&udate=20171007");
+            recommendBook.setImage("http://bookthumb.phinf.naver.net/cover/109/245/10924505.jpg?type=m1&udate=20171007");
             recommendBooks.add(recommendBook);
         }
 

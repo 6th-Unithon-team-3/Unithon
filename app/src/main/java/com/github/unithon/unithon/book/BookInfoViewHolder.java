@@ -44,6 +44,10 @@ public class BookInfoViewHolder extends RecyclerView.ViewHolder {
     public void bind(BookInfo bookInfo) {
         this.bookInfo = bookInfo;
 
+        if(bookInfo == null) {
+            return;
+        }
+
         tvTitle.setText(bookInfo.getTitle());
         tvAuthor.setText(bookInfo.getAuthor());
 

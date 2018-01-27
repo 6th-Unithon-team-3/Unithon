@@ -22,7 +22,8 @@ public class RecommendPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return RecommendFragment.newInstance(recommendBookList.get(position));
+        final Fragment fragment = RecommendFragment.newInstance(recommendBookList.get(position));
+        return fragment;
     }
 
     @Override

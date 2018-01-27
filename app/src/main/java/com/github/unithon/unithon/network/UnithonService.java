@@ -1,6 +1,7 @@
 package com.github.unithon.unithon.network;
 
 import com.github.unithon.unithon.model.MyPage;
+import com.github.unithon.unithon.network.model.BookResponse;
 import com.github.unithon.unithon.network.model.MyPageResponse;
 import com.github.unithon.unithon.network.model.RecommendResponse;
 import com.github.unithon.unithon.network.model.SearchResponse;
@@ -34,6 +35,10 @@ public class UnithonService {
 
     public Call<SearchResponse> getSearchResponse(String isbn) {
         return unithonApi.getSearchResponse(isbn);
+    }
+
+    public Call<BookResponse> getBookResponse(String isbn) {
+        return unithonApi.getBookResponse(isbn);
     }
 
     public Call<MyPageResponse> getMyPages(String id) {

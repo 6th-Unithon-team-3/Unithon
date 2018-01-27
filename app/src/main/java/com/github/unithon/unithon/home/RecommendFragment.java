@@ -1,6 +1,5 @@
 package com.github.unithon.unithon.home;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,6 +7,7 @@ import android.support.v7.widget.AppCompatImageView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.bumptech.glide.Glide;
@@ -50,7 +50,7 @@ public class RecommendFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         Glide.with(view)
-                .load(recommendBook.getImgUrl())
+                .load(recommendBook.getImage())
                 .into(ivRecommendBook);
 
         ivRecommendBook.setOnClickListener(v -> {
