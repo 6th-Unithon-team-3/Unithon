@@ -1,6 +1,7 @@
 package com.github.unithon.unithon.network;
 
 import com.github.unithon.unithon.model.MyPage;
+import com.github.unithon.unithon.model.SearchInfo;
 import com.github.unithon.unithon.network.model.BookResponse;
 import com.github.unithon.unithon.network.model.MyPageResponse;
 import com.github.unithon.unithon.network.model.RecommendResponse;
@@ -33,7 +34,7 @@ public class UnithonService {
     public Call<RecommendResponse> getRecommendResponse() {
         return unithonApi.getRecommendRespose();
     }
-
+  
     public Call<RecommendReviewResponse> getRecommendReviewResponse() {
         return unithonApi.getRecommendReviewResponse();
     }
@@ -57,7 +58,6 @@ public class UnithonService {
     public Call<Void> unLike(String id, String isbn, String memberId) {
         return unithonApi.unLike(id, isbn, memberId);
     }
-
 
 
 }
