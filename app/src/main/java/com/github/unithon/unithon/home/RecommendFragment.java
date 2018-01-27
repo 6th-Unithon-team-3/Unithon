@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatImageView;
+import android.support.v7.widget.AppCompatTextView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,9 @@ public class RecommendFragment extends Fragment {
 
     @BindView(R.id.iv_recommend_book)
     AppCompatImageView ivRecommendBook;
+
+    @BindView(R.id.tv_title)
+    AppCompatTextView tvTitle;
 
     private RecommendBook recommendBook;
 
@@ -48,6 +52,8 @@ public class RecommendFragment extends Fragment {
             Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_recommend, container, false);
         ButterKnife.bind(this, view);
+
+        tvTitle.setText(recommendBook.getTitle());
 
         Glide.with(view)
                 .load(recommendBook.getImage())

@@ -1,5 +1,6 @@
 package com.github.unithon.unithon.model;
 
+import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,8 +9,11 @@ public class Review {
     private String isbn;
     private String id;
     private String title;
-    private String review;
+    private String content;
+    @SerializedName("is_like")
+    private int isLikeInteger;
     private boolean isLike;
+
 
     public String getTitle() {
         return title;
@@ -35,36 +39,36 @@ public class Review {
         this.id = id;
     }
 
-    public String getReview() {
-        return review;
+    public String getContent() {
+        return content;
     }
 
-    public void setReview(String review) {
-        this.review = review;
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public int getIsLike() {
+        return isLikeInteger;
+    }
+
+    public void setIsLike(int isLikeInteger) {
+        this.isLikeInteger = isLikeInteger;
+    }
+
+    public int getIsLikeInteger() {
+        return isLikeInteger;
+    }
+
+    public void setIsLikeInteger(int isLikeInteger) {
+        this.isLikeInteger = isLikeInteger;
     }
 
     public boolean isLike() {
-        return isLike;
+        return isLikeInteger == 1;
     }
 
     public void setLike(boolean like) {
         isLike = like;
-    }
-
-    public static List<Review> getDummyReviewList() {
-        final List<Review> reviewList = new ArrayList<>();
-
-        for(int i = 0; i < 10; i++) {
-            final Review review = new Review();
-            review.id = "@_ojh10" + i;
-            review.review =
-                    i + "번째 리뷰 " + i + "번째 리뷰 " + i + "번째 리뷰 " + i + "번째 리뷰 " + i + "번째 리뷰 " + i + "번째 리뷰 " + i + "번째 리뷰 " + i
-                            + "번째 리뷰 " + i + "번째 리뷰 " + i + "번째 리뷰 ";
-            review.isLike = i % 2 == 0;
-
-            reviewList.add(review);
-        }
-
-        return reviewList;
+        isLikeInteger = like ? 1 : 0;
     }
 }

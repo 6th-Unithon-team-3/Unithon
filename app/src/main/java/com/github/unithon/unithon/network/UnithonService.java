@@ -45,4 +45,14 @@ public class UnithonService {
         return unithonApi.getMyPages(id);
     }
 
+    public Call<Void> like(String id, String isbn, String memberId) {
+        return unithonApi.like(id, isbn, memberId);
+    }
+
+    public Call<Void> unLike(String id, String isbn, String memberId) {
+        return unithonApi.unLike(id, isbn, memberId);
+    }
+
+
+
 }

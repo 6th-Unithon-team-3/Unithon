@@ -11,6 +11,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Query;
 
 public interface UnithonApi {
@@ -28,4 +29,21 @@ public interface UnithonApi {
     @FormUrlEncoded
     @POST("/get_book_review")
     Call<BookResponse> getBookResponse(@Field("isbn") String isbn);
+
+    @FormUrlEncoded
+    @PUT("/push_like")
+    Call<Void> like(
+            @Field("id") String id,
+            @Field("isbn") String isbn,
+            @Field("member_id") String memberId
+    );
+
+    @FormUrlEncoded
+    @PUT("/remove_like")
+    Call<Void> unLike(
+            @Field("id") String id,
+            @Field("isbn") String isbn,
+            @Field("member_id") String name //접속 회원
+    );
+
 }
