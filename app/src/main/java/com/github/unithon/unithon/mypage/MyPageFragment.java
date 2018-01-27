@@ -23,8 +23,8 @@ public class MyPageFragment extends Fragment {
 
     public static final String TAG = MyPageFragment.class.getName();
 
-    @BindView(R.id.rv_review)
-    RecyclerView rvReview;
+    @BindView(R.id.rv_mypage)
+    RecyclerView rvMyPage;
 
     private final MyPageAdapter myPageAdapter = new MyPageAdapter();
 
@@ -50,8 +50,8 @@ public class MyPageFragment extends Fragment {
     }
 
     private void initializeView() {
-        rvReview.setLayoutManager(new LinearLayoutManager(getContext()));
-        rvReview.setAdapter(myPageAdapter);
+        rvMyPage.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvMyPage.setAdapter(myPageAdapter);
     }
 
     private void bindReview() {
