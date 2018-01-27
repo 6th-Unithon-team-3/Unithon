@@ -26,7 +26,7 @@ public interface UnithonApi {
     Call<RecommendReviewResponse> getRecommendReviewResponse();
 
     @GET("/search_book/search/book")
-    Call<SearchResponse> getSearchResponse(@Query("query") String isbn);
+    Call<SearchResponse> getSearchResponse(@Query("query") String title);
 
     @FormUrlEncoded
     @POST("/get_my_review")

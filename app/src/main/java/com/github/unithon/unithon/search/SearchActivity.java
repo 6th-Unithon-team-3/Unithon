@@ -13,10 +13,13 @@ import android.widget.Toast;
 import com.github.unithon.unithon.R;
 import com.github.unithon.unithon.model.SearchInfo;
 import com.github.unithon.unithon.network.UnithonService;
+import com.github.unithon.unithon.network.model.SearchResponse;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -28,14 +31,17 @@ public class SearchActivity extends AppCompatActivity{
     Button searchButton;
     Button XButton;
 
+    //book title
+    String Booktitle = null;
+
     //RecyclerView
+    //@BindView(R.id.search_recycler_view)
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
 
-    // 아이템 리스트
-    private static ArrayList<SearchInfo> searchinfoList;
 
+    private final SearchAdapter mAdapter = new SearchAdapter();
+    private RecyclerView mLayoutManager;
+    //private RecyclerView.LayoutManager mLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,55 +52,81 @@ public class SearchActivity extends AppCompatActivity{
         searchButton = (Button)findViewById(R.id.SearchButton);
         XButton = (Button)findViewById(R.id.Xbutton);
 
+        mRecyclerView = (RecyclerView) findViewById(R.id.search_recycler_view);
+        mRecyclerView.setLayoutManager(new GridLayoutManager(this,2));
+
+        //여기가 문제
+        mRecyclerView.setAdapter(mAdapter);
+
+
+        ButterKnife.bind(this);
+        //settingview();
+
         //Button
-        searchButton.setOnClickListener(new View.OnClickListener() {
+        searchButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //값은 여기로 날릴거임 
-                String forBookname= editText.getText().toString();
-                Toast.makeText(getApplicationContext(),forBookname,Toast.LENGTH_LONG).show();
+                //Booktitle = editText.getText().toString();
+                //if(Booktitle != null) {
+                    //Toast.makeText(getApplicationContext(), Booktitle, Toast.LENGTH_LONG).show();
+                    //값은 여기서  날릴거임
+                    //settingview();
+                    bindSearchInfo();
+                //}
             }
         });
 
         //Button
-        XButton.setOnClickListener(new View.OnClickListener() {
+        XButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
                 editText.setText("");
             }
         });
 
-
-        //임시 데이터 셋
-        searchinfoList = new ArrayList<>();
-        //ArrayList에 값 추가하기
-        searchinfoList.add(new SearchInfo("마음의 바다", "홍길동", 1));
-        searchinfoList.add(new SearchInfo("마음의 바다2", "홍길동", 1));
-        searchinfoList.add(new SearchInfo("마음의 바다3", "홍길동", 1));
-        searchinfoList.add(new SearchInfo("마음의 바다4", "홍길동", 1));
-        searchinfoList.add(new SearchInfo("마음의 바다5", "홍길동", 1));
-        searchinfoList.add(new SearchInfo("마음의 바다6", "홍길동", 1));
-
-        mRecyclerView = (RecyclerView) findViewById(R.id.search_recycler_view);
-        mRecyclerView.setHasFixedSize(true);//옵션
-
-        initview();
-        //어답터 세팅
-        mAdapter = new SearchAdapter(searchinfoList); //스트링 배열 데이터 인자로
-        mRecyclerView.setAdapter(mAdapter);
     }
 
-    private void initview()
+    private void settingview()
     {
-        //Grid layout manager 사용
-        mLayoutManager = new GridLayoutManager(this, 2);
-        mRecyclerView.setLayoutManager(mLayoutManager);
+        //mRecyclerView = (RecyclerView) findViewById(R.id.search_recycler_view);
+        //mRecyclerView.setHasFixedSize(true);//옵션
+        //mRecyclerView.setLayoutManager(new GridLayoutManager(this,2));
+        //mRecyclerView.setLayoutManager(mLayoutManager);
+        //mRecyclerView.setAdapter(mAdapter);
 
     }
 
 
-    private void bindSearchInfo(SearchAdapter searchAdapter)
+    private void bindSearchInfo()
     {
+        UnithonService.getInstance().getSearchResponse("클린 코드").enqueue(new Callback<SearchResponse>() {
+            @Override
+            public void onResponse(Call<SearchResponse> call, Response<SearchResponse> response) {
+                if(response.isSuccessful()) {
+                    final SearchResponse mySearchResponse = response.body();
 
+
+                    final List<SearchInfo> searchInfos = mySearchResponse.items;
+
+                    //Toast.makeText(getApplicationContext(), searchInfos.get(1).title, Toast.LENGTH_LONG).show();
+
+                    if(searchInfos != null && searchInfos.size() > 0) {
+                        final List<SearchInfo> searchInfoList = searchInfos.subList(0,1);
+                        mAdapter.setSearchInfos(searchInfoList);
+//                        if(searchInfos.size() > 5) {
+//                            mAdapter.setSearchInfos(searchInfos.subList(0, 4));
+//                        } else {
+//                            mAdapter.setSearchInfos(searchInfos);
+//                        }
+                        Toast.makeText(getApplicationContext(), searchInfos.get(0).getAuthor().toString(), Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SearchResponse> call, Throwable t) {
+
+            }
+        });
     }
 }

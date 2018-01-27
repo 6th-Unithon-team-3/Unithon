@@ -13,67 +13,43 @@ import com.github.unithon.unithon.model.SearchInfo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchAdapter extends  RecyclerView.Adapter<SearchAdapter.ViewHolder> {
+public class SearchAdapter extends  RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<SearchInfo> mDataset = new ArrayList<>(); //MainActivity에 item class를 정의해 놓았음
-    //private final List<MyPage> myPageList = new ArrayList<>();
+    public SearchAdapter() {
 
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        // 사용될 항목들 선언
-        public ImageView mPhoto;
-        public TextView mBookname;
-        public TextView mWriter;
-
-        public ViewHolder(View v) {
-            super(v);
-
-            mBookname = (TextView) v.findViewById(R.id.search_Bookname);
-            mWriter = (TextView) v.findViewById(R.id.search_writer);
-            //mCode = (TextView) v.findViewById(R.id.search);
-        }
     }
 
-    // 생성자 - 넘어 오는 데이터파입에 유의해야 한다.
-    public SearchAdapter(ArrayList<SearchInfo> myDataset) {
-        mDataset = myDataset;
-    }
-
+    private List<SearchInfo> searchInfos = new ArrayList<>();
 
     //뷰홀더
-    // Create new views (invoked by the layout manager)
     @Override
-    public SearchAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // create a new view
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_search, parent, false);
-        // set the view's size, margins, paddings and layout parameters
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        ViewHolder holder = new ViewHolder(v);
-        return holder;
-    }
+        //final LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        final View view;
 
-    // Replace the contents of a view (invoked by the layout manager)
-    @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
-        holder.mBookname.setText(mDataset.get(position).getModel_Bookname());
-        holder.mWriter.setText(String.valueOf(mDataset.get(position).getModel_Writer())); //int를 가져온다는점 유의
-        //holder.mEmail.setText(mDataset.get(position).getEmail());
-        //holder.mPhoto.setImageBitmap(mDataset.get(position).getPhoto()); //첨부된 이미지를 연결해줘야 하는데 이건 또 복잡하다. 이건 나중에...
+        view = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_search, parent, false);
 
+        //final SearchViewHolder searchViewHolder = new SearchViewHolder(view);
+
+        return new SearchViewHolder(view);
     }
 
     @Override
-    public int getItemCount() {
-        return mDataset.size();
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+
+        ((SearchViewHolder) holder).bind(searchInfos.get(0));
     }
 
-    public void setSearchList(List<SearchInfo> searchInfolist) {
-        this.mDataset.clear();
-        this.mDataset.addAll(searchInfolist);
+    @Override
+    public int getItemCount()
+    {
+        return searchInfos.size();
+    }
+
+    public void setSearchInfos(List<SearchInfo> searchInfos)
+    {
+        this.searchInfos = searchInfos;
         notifyDataSetChanged();
     }
 
