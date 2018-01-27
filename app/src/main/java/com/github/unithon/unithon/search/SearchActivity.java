@@ -45,8 +45,8 @@ public class SearchActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 //값은 여기로 날릴거임 
-                String SearchValue = editText.getText().toString();
-                Toast.makeText(getApplicationContext(),SearchValue,Toast.LENGTH_LONG).show();
+                String forBookname= editText.getText().toString();
+                Toast.makeText(getApplicationContext(),forBookname,Toast.LENGTH_LONG).show();
             }
         });
 
