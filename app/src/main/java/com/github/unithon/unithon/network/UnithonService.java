@@ -1,6 +1,6 @@
 package com.github.unithon.unithon.network;
 
-import com.github.unithon.unithon.model.Review;
+import com.github.unithon.unithon.model.MyPage;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -26,8 +26,8 @@ public class UnithonService {
         unithonApi = retrofit.create(UnithonApi.class);
     }
 
-    public Call<List<Review>> getReviews() {
-        return unithonApi.getReviews();
+    public Call<List<MyPage>> getMyPages() {
+        return unithonApi.getMyPages();
     }
 
 }

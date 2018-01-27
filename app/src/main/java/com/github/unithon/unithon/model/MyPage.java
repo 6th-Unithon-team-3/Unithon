@@ -1,6 +1,6 @@
 package com.github.unithon.unithon.model;
 
-public class Review {
+public class MyPage {
     private String login;
 
     public String getLogin() {

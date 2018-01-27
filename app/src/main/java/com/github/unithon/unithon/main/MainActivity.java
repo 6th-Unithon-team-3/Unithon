@@ -11,7 +11,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.github.unithon.unithon.R;
 import com.github.unithon.unithon.home.HomeFragment;
-import com.github.unithon.unithon.review.ReviewFragment;
+import com.github.unithon.unithon.mypage.MyPageFragment;
 import com.github.unithon.unithon.search.SearchActivity;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
                 return false;
             case R.id.navigation_mypage:
-                replaceFragment(ReviewFragment.newInstance(), ReviewFragment.TAG);
+                replaceFragment(MyPageFragment.newInstance(), MyPageFragment.TAG);
 
                 return true;
             default:
