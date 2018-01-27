@@ -76,7 +76,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
-        homeAdapter.setReviewList(Review.getDummyReviewList());
+//
+//        homeAdapter.setReviewList(Review.getDummyReviewList());
     }
 }
