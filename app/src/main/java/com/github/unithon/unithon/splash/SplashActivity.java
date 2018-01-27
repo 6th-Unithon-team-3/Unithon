@@ -9,6 +9,8 @@ import com.github.unithon.unithon.R;
 
 public class SplashActivity extends AppCompatActivity {
 
+    private static final int DELAY = 1000;
+
     private static final boolean DEBUG_MAIN = true;
 
     @Override
@@ -16,17 +18,12 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-
-                if(DEBUG_MAIN) {
-                    final Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
-
+        new Handler().postDelayed(() -> {
+            if(DEBUG_MAIN) {
+                final Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
             }
-        }, 2000);
+        }, DELAY);
     }
 }
