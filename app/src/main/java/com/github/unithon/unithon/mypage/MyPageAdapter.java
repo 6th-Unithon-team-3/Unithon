@@ -16,7 +16,7 @@ public class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private static final int VIEW_TYPE_SECTION = 100;
     private static final int VIEW_TYPE_PAGE = 101;
 
-    private final List<MyPage> myPageList = new ArrayList<>();
+    private List<MyPage> myPageList = new ArrayList<>();
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -62,8 +62,7 @@ public class MyPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     public void setMyPageList(List<MyPage> myPageList) {
-        this.myPageList.clear();
-        this.myPageList.addAll(myPageList);
+        this.myPageList = myPageList;
         notifyDataSetChanged();
     }
 }

@@ -3,7 +3,7 @@ package com.github.unithon.unithon.model;
 public class BookInfo {
     private String title;
     private String author;
-    private String imgUrl;
+    private String image;
 
     private int reviews;
     private int likes;
@@ -25,12 +25,12 @@ public class BookInfo {
         this.author = author;
     }
 
-    public String getImgUrl() {
-        return imgUrl;
+    public String getImage() {
+        return image;
     }
 
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public int getReviews() {
@@ -62,7 +62,7 @@ public class BookInfo {
 
         bookInfo.title = "title";
         bookInfo.author = "author";
-        bookInfo.imgUrl = "http://bookthumb.phinf.naver.net/cover/109/245/10924505.jpg?type=m1&udate=20171007";
+        bookInfo.image = "http://bookthumb.phinf.naver.net/cover/109/245/10924505.jpg?type=m1&udate=20171007";
 
         bookInfo.reviews = 35;
         bookInfo.likes = 10;

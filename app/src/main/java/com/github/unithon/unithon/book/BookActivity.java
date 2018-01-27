@@ -1,5 +1,7 @@
 package com.github.unithon.unithon.book;
 
+import static com.github.unithon.unithon.home.RecommendFragment.KEY_RECOMMEND_BOOK;
+
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -11,8 +13,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.github.unithon.unithon.R;
 import com.github.unithon.unithon.model.BookInfo;
+import com.github.unithon.unithon.model.RecommendBook;
 import com.github.unithon.unithon.model.Review;
+import com.github.unithon.unithon.network.UnithonService;
+import com.github.unithon.unithon.network.model.RecommendResponse;
 import java.util.ArrayList;
+import java.util.List;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class BookActivity extends AppCompatActivity {
 
@@ -56,7 +65,24 @@ public class BookActivity extends AppCompatActivity {
     }
 
     private void bindData() {
-        //TODO Network Call
+
+        UnithonService.getInstance().getRecommendResponse().enqueue(new Callback<RecommendResponse>() {
+            @Override
+            public void onResponse(Call<RecommendResponse> call, Response<RecommendResponse> response) {
+                if(response.isSuccessful()) {
+
+                    final RecommendResponse recommendResponse = response.body();
+
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RecommendResponse> call, Throwable t) {
+
+            }
+        });
+
         bookAdapter.setBookInfo(BookInfo.getDummyBookInfo());
         bookAdapter.setReviewList(Review.getDummyReviewList());
     }

@@ -46,13 +46,11 @@ public class HomeFragment extends Fragment {
     }
 
     private void initView() {
-        homeAdapter = new HomeAdapter(getFragmentManager());
-
+        homeAdapter= new HomeAdapter(getFragmentManager());
         rvHome.setLayoutManager(new LinearLayoutManager(getContext()));
         rvHome.setAdapter(homeAdapter);
 
         homeAdapter.setRecommendBookList(RecommendBook.getDummyRecommendBookList());
         homeAdapter.setReviewList(Review.getDummyReviewList());
-        homeAdapter.notifyDataSetChanged();
     }
 }

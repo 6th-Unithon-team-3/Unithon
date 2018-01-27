@@ -43,6 +43,8 @@ public class Review {
                     i + "번째 리뷰 " + i + "번째 리뷰 " + i + "번째 리뷰 " + i + "번째 리뷰 " + i + "번째 리뷰 " + i + "번째 리뷰 " + i + "번째 리뷰 " + i
                             + "번째 리뷰 " + i + "번째 리뷰 " + i + "번째 리뷰 ";
             review.isLike = i % 2 == 0;
+
+            reviewList.add(review);
         }
 
         return reviewList;

@@ -42,7 +42,7 @@ public class BookAdapter extends RecyclerView.Adapter {
                 ((BookInfoViewHolder) holder).bind(bookInfo);
                 break;
             case VIEW_TYPE_REVIEW:
-                ((ReviewViewHodler) holder).bind(reviewList.get(position + SIZE_OF_HEADER));
+                ((ReviewViewHodler) holder).bind(reviewList.get(position - SIZE_OF_HEADER));
                 break;
             default:
                 throw new IllegalArgumentException("is invalid type");

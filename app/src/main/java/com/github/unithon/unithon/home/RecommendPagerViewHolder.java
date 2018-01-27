@@ -36,6 +36,8 @@ public class RecommendPagerViewHolder extends RecyclerView.ViewHolder {
         pagerRecommend.setOffscreenPageLimit(5);
         circleIndicator.setViewPager(pagerRecommend);
         recommendPagerAdapter.registerDataSetObserver(circleIndicator.getDataSetObserver());
+
+        recommendPagerAdapter.notifyDataSetChanged();
     }
 
     public void bind(List<RecommendBook> recommendBookList) {
