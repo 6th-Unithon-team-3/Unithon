@@ -118,7 +118,7 @@ public class SearchActivity extends AppCompatActivity{
 //                        } else {
 //                            mAdapter.setSearchInfos(searchInfos);
 //                        }
-                        Toast.makeText(getApplicationContext(), searchInfos.get(0).getAuthor().toString(), Toast.LENGTH_LONG).show();
+                        //Toast.makeText(getApplicationContext(), searchInfos.get(0).getIsbn().toString(), Toast.LENGTH_LONG).show();
                     }
                 }
             }
