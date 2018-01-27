@@ -40,5 +40,9 @@ public class MyPageViewHolder extends RecyclerView.ViewHolder {
         Glide.with(itemView.getContext())
                 .load(myPage.image)
                 .into(ivBook);
+
+        itemView.setOnClickListener(v -> {
+
+        });
     }
 }

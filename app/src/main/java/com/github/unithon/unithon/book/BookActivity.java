@@ -78,6 +78,8 @@ public class BookActivity extends AppCompatActivity {
                     final BookSentiment bookSentiment = bookResponse.response;
                     final BookInfo bookInfo = new BookInfo();
 
+                    PollyHelper.getInstance().playPolly(bookSentiment.voice);
+
                     bookInfo.setIsbn(recommendBook.getIsbn());
                     bookInfo.setTitle(recommendBook.getTitle());
                     bookInfo.setAuthor(recommendBook.getAuthor());
@@ -97,8 +99,6 @@ public class BookActivity extends AppCompatActivity {
                             bookAdapter.setReviewList(reviewList);
                         }
                     }
-
-                    PollyHelper.getInstance().playPolly(recommendBook.getTitle());
 
                 }
             }

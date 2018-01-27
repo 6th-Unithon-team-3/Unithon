@@ -4,4 +4,5 @@ public class BookSentiment {
     public int total;
     public int like;
     public int hate;
+    public String voice;
 }
