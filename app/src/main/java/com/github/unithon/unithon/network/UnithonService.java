@@ -18,7 +18,8 @@ public class UnithonService {
 
     private UnithonService() {
         final Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.github.com/")
+                .baseUrl("https://api.github.com/") // Github url
+//                .baseUrl("http://13.124.181.246:44443") // Server url
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

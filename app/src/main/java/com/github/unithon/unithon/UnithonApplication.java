@@ -4,10 +4,16 @@ import android.app.Application;
 
 public class UnithonApplication extends Application {
 
+    private static Application globalApplication;
+
     @Override
     public void onCreate() {
         super.onCreate();
 
-        //TODO
+        globalApplication = this;
+    }
+
+    public static Application getGlobalApplication() {
+        return globalApplication;
     }
 }
