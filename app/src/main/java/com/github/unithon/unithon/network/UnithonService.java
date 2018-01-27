@@ -35,8 +35,8 @@ public class UnithonService {
         return unithonApi.getRecommendRespose();
     }
   
-    public Call<RecommendReviewResponse> getRecommendReviewResponse() {
-        return unithonApi.getRecommendReviewResponse();
+    public Call<RecommendReviewResponse> getRecommendReviewResponse(String id) {
+        return unithonApi.getRecommendReviewResponse(id);
     }
 
     public Call<SearchResponse> getSearchResponse(String isbn) {

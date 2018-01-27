@@ -30,7 +30,7 @@
       android:windowSoftInputMode="adjustPan">
     </activity>
     <activity android:name=".book.BookActivity" />
-    <activity android:name=".content.ReviewActivity" />
+    <activity android:name=".review.ReviewActivity" />
 
     <!-- For naver login api -->
     <activity

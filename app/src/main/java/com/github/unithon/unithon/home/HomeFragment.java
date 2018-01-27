@@ -77,7 +77,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        UnithonService.getInstance().getRecommendReviewResponse().enqueue(new Callback<RecommendReviewResponse>() {
+        UnithonService.getInstance().getRecommendReviewResponse("ojh102").enqueue(new Callback<RecommendReviewResponse>() {
             @Override
             public void onResponse(Call<RecommendReviewResponse> call, Response<RecommendReviewResponse> response) {
                 if(response.isSuccessful()) {
