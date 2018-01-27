@@ -18,6 +18,7 @@ import com.github.unithon.unithon.model.RecommendBook;
 import com.github.unithon.unithon.model.Review;
 import com.github.unithon.unithon.network.UnithonService;
 import com.github.unithon.unithon.network.model.BookResponse;
+import com.github.unithon.unithon.util.PollyHelper;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -96,6 +97,9 @@ public class BookActivity extends AppCompatActivity {
                             bookAdapter.setReviewList(reviewList);
                         }
                     }
+
+                    PollyHelper.getInstance().playPolly(recommendBook.getTitle());
+
                 }
             }
 
